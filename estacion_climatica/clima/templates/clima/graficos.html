@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Estación Meteorológica 🌿</title>
+    <link rel="stylesheet" href="{% static 'css/graficos.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="{% static 'img/iconodos.jpg' %}">
+</head>
+<body>
+    <header class="titulo">
+        <i class="fas fa-cloud-sun-rain"></i> 
+        <h1>Microestación Meteorológica: Análisis Climático 📊</h1>
+    </header>
+
+    <form method="GET" onsubmit="return validateForm()" class="filter-form">
+        <div class="filter-group">
+            <label for="year">📅 Año:</label>
+            <select name="year" id="year" onchange="actualizarMeses()">
+                <option value="">Todos</option>
+                {% for y in años_únicos %}
+                    <option value="{{ y }}" {% if year_selected == y %}selected{% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <div class="filter-group">
+            <label for="month">📆 Mes:</label>
+            <select name="month" id="month">
+                <option value="">Todos</option>
+                {% for m in meses_únicos %}
+                    <option value="{{ m }}" {% if month_selected == m %}selected{% endif %}>{{ m }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <button type="submit" class="filter-button">🔍 Filtrar</button>
+    </form>
+
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% else %}
+        <h2>Temperatura 🌡️ </h2>
+        {{ temperatura|safe }}
+
+        <h2>Humedad  💦</h2>
+        {{ humedad|safe }}
+
+        <h2>Luz  ☀️ </h2>
+        {{ luz|safe }}
+
+        <h2>Presión Atmosférica 🌧️</h2>
+        {{ presion|safe }}
+    {% endif %}
+
+    <script>
+        function validateForm() {
+            const year = document.getElementById("year").value;
+            const month = document.getElementById("month").value;
+
+            if (year && (isNaN(year) || year <= 0)) {
+                alert("Por favor, selecciona un año válido.");
+                return false;
+            }
+
+            if (month && (isNaN(month) || month < 1 || month > 12)) {
+                alert("Por favor, selecciona un mes válido.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function actualizarMeses() {
+            const year = document.getElementById("year").value;
+            const monthSelect = document.getElementById("month");
+
+            // Limpiar opciones actuales
+            monthSelect.innerHTML = '<option value="">Todos</option>';
+
+            if (year) {
+                // Hacer una solicitud AJAX para obtener los meses del año seleccionado
+                fetch(`/obtener-meses/?year=${year}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.meses.forEach(mes => {
+                            const option = document.createElement("option");
+                            option.value = mes;
+                            option.text = mes;
+                            monthSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error al obtener los meses:", error));
+            }
+        }
+    </script>
+</body>
+</html>
