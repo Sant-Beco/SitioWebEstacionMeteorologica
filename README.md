@@ -90,7 +90,7 @@ Si tienes alguna pregunta o sugerencia, no dudes en escribirme a sanprogramador8
 
 🚜🌍 Hagamos la agricultura más inteligente juntos.
 
-Imagenes del sitio web de como se ve con datos de la microestacion 
+A continuación, se presentan capturas de pantalla del sitio web mostrando los datos de la microestación con mejoras en su visualización y funcionalidad.
 
 ![image](https://github.com/user-attachments/assets/23cc07b1-3c56-454c-be03-5f1de1b5a412)
 
