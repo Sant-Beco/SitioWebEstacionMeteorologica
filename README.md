@@ -89,3 +89,14 @@ Abre un Pull Request
 Si tienes alguna pregunta o sugerencia, no dudes en escribirme a sanprogramador8@gmail.com.
 
 🚜🌍 Hagamos la agricultura más inteligente juntos.
+
+Imagenes del sitio web de como se ve con datos de la microestacion 
+
+![image](https://github.com/user-attachments/assets/9c23f64b-a478-4fcf-bab5-ed2bde798189)
+
+![image](https://github.com/user-attachments/assets/1c4f6a40-a8fd-4deb-9cd6-673a153cd3c4)
+
+![image](https://github.com/user-attachments/assets/2a0cbd1e-8450-4a42-ac0c-7440733acc6f)
+
+![image](https://github.com/user-attachments/assets/9e492fe4-ba3a-4ca7-9073-4fc3767d78c9)
+
