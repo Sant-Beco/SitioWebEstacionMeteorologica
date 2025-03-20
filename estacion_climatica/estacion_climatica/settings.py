@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-b&_gdoql9tjw*ty12(re@-(93m1x8y5v=!%v539(-n%(8fu=*p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -117,13 +117,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/static/'
+
+# Define correctamente la ubicación de los archivos estáticos en desarrollo
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Ruta a la carpeta static del proyecto
+    os.path.join(BASE_DIR, 'static'),
 ]
+
+# Solo se usa en producción con `collectstatic`
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
